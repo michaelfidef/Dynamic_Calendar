@@ -9,11 +9,11 @@ session_destroy();
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kalender 2023</title>
+        <title>Calendar</title>
         <link rel="stylesheet" href="./DESIGN/login.css">
     </head>
     <body>
-        <header class="calender"> <h1> WELCOME TO 2024 </h1> </header>
+        <header class="calender"> <h1> WELCOME TO 2023 </h1> </header>
         <main>
             <div class="login-box">
                 <h2>Login Here</h2>
@@ -31,7 +31,6 @@ session_destroy();
         </main>
         <footer>
             <p><b>FTI UKDW 2023 &#169;Copyright</b></p>
-            <script src="./js/login.js"></script>
         </footer>
     </body>
 </html>
@@ -48,10 +47,33 @@ include 'koneksi.php';
             session_start();
             $data = mysqli_fetch_array($login);
             $namahasil = $row["nama"];
-            setcookie("nama", $data["nama"], time()+60*10);
+            setcookie("nama", $data["nama"], time()+60*100);
             $_SESSION["email"] = $email;
             header("location: februari.php");
             };
         }
 mysqli_close($conn);
 ?>
+
+<script>   
+    function validasi() {
+        var message = document.getElementsByTagName("p")[0];
+        message.innerHTML = "";
+        const pass = document.getElementById("password").value;
+        const email = document.getElementById("email").value;
+
+        if(pass == "" && email == ""){
+            alert("Email dan Password kosong!");
+            return false;
+        }
+        else if(email == ""){
+            alert("Email Kosong");
+            return false;
+        }else if(pass == ""){
+            alert("Password Kosong");
+            return false;   
+        }else{
+            return true;
+        }   
+    }
+</script>

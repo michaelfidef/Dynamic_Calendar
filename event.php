@@ -12,7 +12,7 @@ if(strlen($_SESSION['email']) == 0){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalender 2023</title>
+    <title>Jadwal Selama Sebulan</title>
     <link rel="stylesheet" href="./DESIGN/ini.css">
 </head>
 <body>
@@ -20,7 +20,7 @@ if(strlen($_SESSION['email']) == 0){
         <header>Kalender</header>
             <ul>
               <li><a href="februari.php"><i class="fas"></i>Home</a></li>
-              <li><a href="#"><i class="fas"></i>About</a></li>
+              <li><a href="add.php"><i class="far"></i>Service</a></li>
               <li><a href="login.php"><i class="fas"></i>Log Out</a></li>
             </ul>
     </div>   
@@ -57,24 +57,36 @@ if(strlen($_SESSION['email']) == 0){
                         echo '<td>'.$row["tgl_selesai"].'</td>';
                         echo '<td>'.$row["wkt_mulai"].'</td>';
                         echo '<td>'.$row["wkt_selesai"].'</td>';
-                        if ($row["level_Kepentingan"] == 0){
+                        if ($row["level_Kepentingan"] == "Biasa"){
                             echo '<td> Biasa</td>';
-                        } else if ($row["level_Kepentingan"] == 1){
+                        } else if ($row["level_Kepentingan"] == "Peting"){
                             echo '<td> Penting</td>';
                         } else {
                             echo '<td> Sangat Penting</td>';
                         }
                         
+                        
                         echo '<td>'.$row["durasi"].'</td>';
                         echo '<td>'.$row["lokasi"].'</td>';
-                        echo '<td> <img src="'.$row["gambar_kegiatan"].'" width = "50px"><img></td>';
-                        echo '<td> <a href="./add.php?id='.$row["id"].'">edit</a></td>';
-                        echo '<td> <a href="./detailEvent.php?id='.$row["id"].'">detail</a> </td>';
-                        echo '<td> <a href="./delete.php?id='.$row["id"].'">delete</a> </td>';
-                        echo '</tr>';
+                        echo '<td> <img src="'.$row["gambar_kegiatan"].'" width = "50px" height="auto"><img></td>';
+                        $tgl_selesai = strtotime($row["tgl_selesai"]);
+                        $current_date = strtotime(date("Y-m-d"));
                         
-                    }
-                }
+                        if ($tgl_selesai >= $current_date) {
+                            echo '<td> <a href="./add.php?id='.$row["id"].'" onclick="return confirm(\'Yakin anda akan menngubah data?\') || (href=\'./event.php\')">edit</a></td>';
+                        } else {
+                            echo '<td> <a href="event.php" onclick="return confirm(\'Anda tidak dapat mengubah event yang sudah lewat!\')">edit</a></td>';
+                        }
+                        echo '<td> <a href="./detailEvent.php?id='.$row["id"].'">detail</a> </td>';
+                        
+                        if ($tgl_selesai >= $current_date) {
+                            echo '<td> <a href="./delete.php?id='.$row["id"].'" onclick="return confirm(\'Yakin anda akan menghapus data?\') || (href=\'./event.php\')">delete</a> </td>';
+                        } else {
+                            echo '<td> <a href="event.php" onclick="return confirm(\'Anda tidak dapat menghapus event yang sudah lewat!\')">delete</a></td>';
+                        }
+                        echo '</tr>';
+    }
+}
                 ?>
             </tbody>
         </table>

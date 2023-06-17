@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Jun 2023 pada 07.32
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.2.0
+-- Generation Time: Jun 17, 2023 at 07:58 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `isi`
+-- Table structure for table `isi`
 --
 
 CREATE TABLE `isi` (
@@ -37,22 +37,22 @@ CREATE TABLE `isi` (
   `level_Kepentingan` varchar(30) NOT NULL,
   `durasi` varchar(10) NOT NULL,
   `lokasi` text NOT NULL,
-  `gambar_kegiatan` varchar(50) NOT NULL,
-  `day` varchar(50) NOT NULL
+  `gambar_kegiatan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `isi`
+-- Dumping data for table `isi`
 --
 
-INSERT INTO `isi` (`id`, `keterangan`, `tgl_mulai`, `tgl_selesai`, `wkt_mulai`, `wkt_selesai`, `level_Kepentingan`, `durasi`, `lokasi`, `gambar_kegiatan`, `day`) VALUES
-(56, 'Goland Foto', '2023-06-28', '2023-06-30', '14:42:00', '14:44:00', 'Sangat Penting', '01', ' Duta Foto', 'images/WhatsApp Image 2023-06-06 at 21.57.42.jpeg', ''),
-(62, 'dada', '2023-06-14', '2023-06-15', '09:19:00', '10:19:00', 'Penting', '01', ' disana', 'images/IMG_0284.JPG', '');
+INSERT INTO `isi` (`id`, `keterangan`, `tgl_mulai`, `tgl_selesai`, `wkt_mulai`, `wkt_selesai`, `level_Kepentingan`, `durasi`, `lokasi`, `gambar_kegiatan`) VALUES
+(62, 'dada', '2023-06-14', '2023-06-15', '09:19:00', '10:19:00', 'Penting', '01', ' disana', 'images/IMG_0284.JPG'),
+(67, 'Membantu Kakek', '2023-06-17', '2023-06-20', '01:32:00', '02:32:00', 'Sangat Penting', '01', '      Condong catur    ', 'images/istockphoto-1469731249-1024x1024.jpg'),
+(68, 'Makrab OKA', '2023-06-23', '2023-06-25', '18:34:00', '22:34:00', 'Sangat Penting', '01', '    Tawangmangu  ', 'images/IMG_0295.JPG');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users_login`
+-- Table structure for table `users_login`
 --
 
 CREATE TABLE `users_login` (
@@ -63,7 +63,7 @@ CREATE TABLE `users_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users_login`
+-- Dumping data for table `users_login`
 --
 
 INSERT INTO `users_login` (`email`, `password`, `nama`, `jenis_kelamin`) VALUES
@@ -76,26 +76,26 @@ INSERT INTO `users_login` (`email`, `password`, `nama`, `jenis_kelamin`) VALUES
 --
 
 --
--- Indeks untuk tabel `isi`
+-- Indexes for table `isi`
 --
 ALTER TABLE `isi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users_login`
+-- Indexes for table `users_login`
 --
 ALTER TABLE `users_login`
   ADD PRIMARY KEY (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `isi`
+-- AUTO_INCREMENT for table `isi`
 --
 ALTER TABLE `isi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

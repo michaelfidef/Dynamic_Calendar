@@ -1,6 +1,7 @@
 <?php
 
 include "koneksi.php";
+
 session_start();
 if(strlen($_SESSION['email']) == 0){
     header("location: login.php");
@@ -26,7 +27,6 @@ if(strlen($_SESSION['email']) == 0){
     else {
         echo "Data yang hendak diedit tidak ada.";
     }
-    mysqli_close($conn);
 }
 
 ?>
@@ -39,20 +39,22 @@ if(strlen($_SESSION['email']) == 0){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="./DESIGN/isi.css">
+    <script src="script.js"></script>
+
 </head>
     <div>
         <header class="head"><h1>CALENDER</h1></header>      
-        <h1 class="button"><a href="event.php"><img src="https://cdn-icons-png.flaticon.com/512/60/60817.png" alt="home" width="50"></a></h1>  
+        <h1 class="button"><a href="februari.php"><img src="https://cdn-icons-png.flaticon.com/512/60/60817.png" alt="home" width="50"></a></h1>  
     </div>
 <body>
     <form action="add.php" method= post>
         <div>
-            <h3>To do List: <?php $oldket ?></h3>
+            <h3>Rincian Kegiatan :</h3>
             <table id = "detail">
                 <tr>
                     <td>Nama Kegiatan :</td>
                     <td><?php  echo $oldket?></td>
-                    <td rowspan=7> <img src="<?php  echo $oldgambar_kegiatan?>" width=300px height=500px></td>
+                    <td rowspan=7; colspan="2"> <img src="<?php  echo $oldgambar_kegiatan?>" width=300px height=500px></td>
                 </tr>
                 <tr>
                     <td>Tanggal Mulai :</td>
@@ -81,6 +83,22 @@ if(strlen($_SESSION['email']) == 0){
                 <tr>
                     <td>Lokasi :</td>
                     <td><?php  echo $oldlokasi?></td>
+                    <?php 
+                    $tgl_selesai = strtotime($row["tgl_selesai"]);
+                    $current_date = strtotime(date("Y-m-d"));
+                    
+                    if ($tgl_selesai >= $current_date) {
+                        echo '<td> <a href="./add.php?id='.$oldid.'" onclick="return confirm(\'Yakin anda akan mengubah data?\') || (href=\'./event.php\')">edit</a></td>';
+                    } else {
+                        echo '<td> <a href="event.php" onclick="return confirm(\'Anda tidak dapat mengubah event yang sudah lewat!\')">edit</a></td>';
+                    }
+
+                    if ($tgl_selesai >= $current_date) {
+                        echo '<td> <a href="./delete.php?id='.$oldid.'" onclick="return confirm(\'Yakin anda akan menghapus data?\')|| (href=\'./event.php\')">delete</a> </td>';
+                    } else {
+                        echo '<td> <a href="event.php" onclick="return confirm(\'Anda tidak dapat menghapus event yang sudah lewat!\')">delete</a></td>';
+                    }
+                    ?>
                 </tr>
             </table>
         </div>

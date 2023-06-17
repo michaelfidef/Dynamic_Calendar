@@ -3,8 +3,7 @@ include "koneksi.php";
 session_start();
 if(strlen($_SESSION['email']) == 0){
     header("location: login.php");
-}
-
+ }
 $id = 0;
 if($_GET){
     $id = $_GET['id'];
@@ -44,18 +43,18 @@ if($_GET){
         <h1 class="button"><a href="februari.php"><img src="https://cdn-icons-png.flaticon.com/512/60/60817.png" alt="home" width="50"></a></h1>  
     </div>
 <body>
-    <form action="proses.php" method= "post" enctype="multipart/form-data">
+    <form action="proses.php" method= "post" enctype="multipart/form-data" onsubmit="return valiWaktu()">
         <div>
             <h3>To do List: </h3>
             <table>
                 <tr>
                     <td><label for="keterangan">Nama Agenda </label></td>
-                    <td>: <input type="text" name="keterangan" id="keterangan" value="<?php if($id != 0){echo $oldket;}?>"></td>
+                    <td>: <input type="text" name="keterangan" id="keterangan" value="<?php if($id != 0){echo $oldket;}?>"required></td>
                 </tr>
                 <tr>
                     <td><label for="tglMulaiID">Tanggal Mulai </label></td>
-                    <td>: <input type="date" name="tgl_mulai" id="tglMulaiID" value="<?php if($id != 0){echo $oldtgl_mulai;}?>"></td>
-                    <td><input type="time" name="wkt_mulai" id="wktMulaiID" value="<?php if($id != 0){echo $oldwkt_mulai;}?>"></td>
+                    <td>: <input type="date" name="tgl_mulai" id="tglMulaiID" value="<?php if($id != 0){echo $oldtgl_mulai;}?>" required></td>
+                    <td><input type="time" name="wkt_mulai" id="wktMulaiID" value="<?php if($id != 0){echo $oldwkt_mulai;}?>" required></td>
                 </tr>
                 <tr>
                     <td><label for="tglSlsID">Tanggal Selesai </label></td>
@@ -72,12 +71,12 @@ if($_GET){
                 </tr>
                 <tr>
                     <td><label for="lokasiID">Lokasi </label></td>
-                    <td colspan="2"><textarea name="lokasi" id="lokasiID" cols="25" rows="5"> <?php if($id != 0){echo $oldlokasi ;}?></textarea></td>
+                    <td colspan="2"><textarea name="lokasi" id="lokasiID" cols="25" rows="5" required> <?php if($id != 0){echo $oldlokasi ;}?> </textarea></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td><label for="gambarID">Gambar Kegiatan </label></td>
-                    <td colspan="2">: <input type="file" name="gambar_kegiatan" id="gambarID" <?php if($id != 0){echo $oldgambar_kegiatan ;}?>></td>
+                    <td colspan="2">: <input type="file" name="gambar_kegiatan" id="gambarID" ></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -94,3 +93,30 @@ if($_GET){
     <p><b>By: Kezia Trifena - Michael Fidef - Michael Goland</b></p>
 </footer>
 </html>
+
+<script>
+    function valiWaktu() {
+    var mulai = document.getElementById("wktMulaiID");
+    var selesai = document.getElementById("wktSlsID");
+    var tglmulai = document.getElementById("tglMulaiID");
+    var tglselesai = document.getElementById("tglSlsID");
+
+    if (tglmulai.value > tglselesai.value) {
+        confirm("Maaf event gagal, Silahkan mengisi data tanggal dengan baik dan benar!");
+        return false; 
+    }
+    if (tglmulai.value == tglselesai.value && selesai.value <= mulai.value ) {
+        confirm("Maaf event gagal, Silahkan mengisi data waktu dengan benar!");
+        return false;
+    }
+    if (tglmulai.value == tglselesai.value && selesai.value > mulai.value ) {
+        confirm("Event anda Berhasil dibuat!");
+        return true;
+    }
+    if (tglmulai.value < tglselesai.value) { 
+        confirm("Event anda Berhasil dibuat!");
+        return true;
+    }
+
+}
+</script>
