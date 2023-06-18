@@ -78,7 +78,21 @@ if(strlen($_SESSION['email']) == 0){
                 </tr>
                 <tr>
                     <td>Durasi :</td>
-                    <td><?php  echo $olddurasi?></td>
+                    <td><?php  
+                        if(strlen($olddurasi) == 4){
+                            $jamIndex = substr($olddurasi, 0, 2);
+                            $menitIndex = substr($olddurasi, 2, 2);
+
+                            echo $jamIndex . " jam " . $menitIndex. " menit";
+                        }else{
+                            $jamIndex = substr($olddurasi, 0, 1);
+                            $menitIndex = substr($olddurasi, 1, 2);
+
+                            echo $jamIndex . " jam " . $menitIndex. " menit";
+                        }
+                        
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Lokasi :</td>

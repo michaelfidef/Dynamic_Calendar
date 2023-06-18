@@ -64,8 +64,6 @@ if(strlen($_SESSION['email']) == 0){
                         } else {
                             echo '<td> Sangat Penting</td>';
                         }
-                        
-                        
                         echo '<td>'.$row["durasi"].'</td>';
                         echo '<td>'.$row["lokasi"].'</td>';
                         echo '<td> <img src="'.$row["gambar_kegiatan"].'" width = "50px" height="auto"><img></td>';

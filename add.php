@@ -71,13 +71,11 @@ if($_GET){
                 </tr>
                 <tr>
                     <td><label for="lokasiID">Lokasi </label></td>
-                    <td colspan="2"><textarea name="lokasi" id="lokasiID" cols="25" rows="5" required> <?php if($id != 0){echo $oldlokasi ;}?> </textarea></td>
-                    <td></td>
+                    <td colspan="2"><textarea name="lokasi" id="lokasiID" cols="25" rows="5" required><?php if($id != 0){echo $oldlokasi ;}?></textarea></td>
                 </tr>
                 <tr>
                     <td><label for="gambarID">Gambar Kegiatan </label></td>
                     <td colspan="2">: <input type="file" name="gambar_kegiatan" id="gambarID" ></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td></td>
