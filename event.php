@@ -64,7 +64,19 @@ if(strlen($_SESSION['email']) == 0){
                         } else {
                             echo '<td> Sangat Penting</td>';
                         }
-                        echo '<td>'.$row["durasi"].'</td>';
+                        echo '<td>';
+                        if(strlen($row["durasi"]) == 4){
+                            $jamIndex = substr($row["durasi"], 0, 2);
+                            $menitIndex = substr($row["durasi"], 2, 2);
+
+                            echo $jamIndex . " jam " . $menitIndex. " menit";
+                        }else{
+                            $jamIndex = substr($row["durasi"], 0, 1);
+                            $menitIndex = substr($row["durasi"], 1, 2);
+
+                            echo $jamIndex . " jam " . $menitIndex. " menit";
+                        }
+                        '</td>';
                         echo '<td>'.$row["lokasi"].'</td>';
                         echo '<td> <img src="'.$row["gambar_kegiatan"].'" width = "50px" height="auto"><img></td>';
                         $tgl_selesai = strtotime($row["tgl_selesai"]);
